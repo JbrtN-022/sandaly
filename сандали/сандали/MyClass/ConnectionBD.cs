@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,13 @@ namespace сандали.MyClass
         public static MySqlConnection myConnection;
         public static MySqlCommand myCommand;
         public static MySqlDataAdapter myDataAdapter;
-
-
+        public static string login;
+        public static string roll;
+        public static string resFio; 
+        public static DataTable dtKategoriya = new DataTable();
+        public static DataTable dtPostavchik = new DataTable();
+        public static DataTable dtProizvoditel = new DataTable();
+        public static DataTable dtEdinIzm = new DataTable(); 
         public static bool ConnectBD()
         {
             try

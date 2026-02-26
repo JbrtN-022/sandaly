@@ -29,5 +29,30 @@ namespace сандали
         {
             MyClass.ConnectionBD.CloseBD();
         }
+
+        private void buttonAutorization_Click(object sender, EventArgs e)
+        {
+            MyClass.Autorization.AutorizationBD(textBoxlogin.Text, textBoxpass.Text);
+            MyClass.Autorization.GetFioUser(textBoxlogin.Text, textBoxpass.Text);
+            switch (MyClass.ConnectionBD.roll)
+            {
+                case null:
+                    MessageBox.Show("Неверные данные!");
+                    break;
+                case "1":
+                    FormListTovar form = new FormListTovar();
+                    form.ShowDialog();
+                    break;
+                case "2":
+                    FormListTovar form1 = new FormListTovar();
+                    form1.ShowDialog();
+                    break;
+                case "3":
+                    FormListTovar form2 = new FormListTovar();
+                    form2.ShowDialog();
+                    break;
+            }
+            
+        }
     }
 }

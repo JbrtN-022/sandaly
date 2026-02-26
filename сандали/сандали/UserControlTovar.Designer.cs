@@ -34,10 +34,11 @@
             this.labelTovar = new System.Windows.Forms.Label();
             this.labelDesc = new System.Windows.Forms.Label();
             this.labelProizvoditel = new System.Windows.Forms.Label();
-            this.labelCena = new System.Windows.Forms.Label();
+            this.labelCenaOld = new System.Windows.Forms.Label();
             this.labelEdIzm = new System.Windows.Forms.Label();
             this.labelKolVo = new System.Windows.Forms.Label();
             this.labelSkidka = new System.Windows.Forms.Label();
+            this.labelCenaNew = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,15 +93,15 @@
             this.labelProizvoditel.TabIndex = 4;
             this.labelProizvoditel.Text = "Производитель:";
             // 
-            // labelCena
+            // labelCenaOld
             // 
-            this.labelCena.AutoSize = true;
-            this.labelCena.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCena.Location = new System.Drawing.Point(150, 89);
-            this.labelCena.Name = "labelCena";
-            this.labelCena.Size = new System.Drawing.Size(38, 15);
-            this.labelCena.TabIndex = 5;
-            this.labelCena.Text = "Цена:";
+            this.labelCenaOld.AutoSize = true;
+            this.labelCenaOld.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCenaOld.Location = new System.Drawing.Point(150, 89);
+            this.labelCenaOld.Name = "labelCenaOld";
+            this.labelCenaOld.Size = new System.Drawing.Size(38, 15);
+            this.labelCenaOld.TabIndex = 5;
+            this.labelCenaOld.Text = "Цена:";
             // 
             // labelEdIzm
             // 
@@ -134,23 +135,35 @@
             this.labelSkidka.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelSkidka.Click += new System.EventHandler(this.label6_Click);
             // 
-            // UserControl1
+            // labelCenaNew
+            // 
+            this.labelCenaNew.AutoSize = true;
+            this.labelCenaNew.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCenaNew.Location = new System.Drawing.Point(216, 89);
+            this.labelCenaNew.Name = "labelCenaNew";
+            this.labelCenaNew.Size = new System.Drawing.Size(0, 15);
+            this.labelCenaNew.TabIndex = 9;
+            // 
+            // UserControlTovar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.labelCenaNew);
             this.Controls.Add(this.labelSkidka);
             this.Controls.Add(this.labelKolVo);
             this.Controls.Add(this.labelEdIzm);
-            this.Controls.Add(this.labelCena);
+            this.Controls.Add(this.labelCenaOld);
             this.Controls.Add(this.labelProizvoditel);
             this.Controls.Add(this.labelDesc);
             this.Controls.Add(this.labelTovar);
             this.Controls.Add(this.labelArticul);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "UserControl1";
+            this.Name = "UserControlTovar";
             this.Size = new System.Drawing.Size(597, 146);
+            this.Load += new System.EventHandler(this.UserControlTovar_Load);
+            this.Click += new System.EventHandler(this.UserControlTovar_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,9 +177,10 @@
         private System.Windows.Forms.Label labelTovar;
         private System.Windows.Forms.Label labelDesc;
         private System.Windows.Forms.Label labelProizvoditel;
-        private System.Windows.Forms.Label labelCena;
+        private System.Windows.Forms.Label labelCenaOld;
         private System.Windows.Forms.Label labelEdIzm;
         private System.Windows.Forms.Label labelKolVo;
         private System.Windows.Forms.Label labelSkidka;
+        private System.Windows.Forms.Label labelCenaNew;
     }
 }
