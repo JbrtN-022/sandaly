@@ -26,6 +26,7 @@ namespace сандали
             if(int.Parse(ConnectionBD.roll) == 3)
             {
                 groupBox1.Visible = false;
+                button2.Visible = false;
             }
             if (int.Parse(ConnectionBD.roll) == 1)
             {
@@ -36,6 +37,22 @@ namespace сандали
         private void button1_Click(object sender, EventArgs e)
         {
             FormAddTovar form = new FormAddTovar();
+            form.ShowDialog();
+            LoadTovars();
+        }
+        public void LoadTovars()
+        {
+            flowLayoutPanel1.Controls.Clear();
+            CardTovar.SelectListTovar(flowLayoutPanel1);
+        }
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormListZakaz form = new FormListZakaz();
             form.ShowDialog();
         }
     }

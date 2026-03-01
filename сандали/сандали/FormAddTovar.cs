@@ -60,11 +60,80 @@ namespace сандали
             char later3 = (char)('A' + randomize.Next(0, 26));
             int later4 = randomize.Next(0, 10);
             return $"{later1}{later2}{later3}{later4}";
+
         }
+        private bool ValidateFields()
+        {
+            if (textBoxName.Text == "")
+            {
+                MessageBox.Show("Введите название");
+                return false;
+            }
+
+            if (!decimal.TryParse(textBoxPrice.Text, out decimal price))
+            {
+                MessageBox.Show("Цена некорректна");
+                return false;
+            }
+
+            if (price < 0)
+            {
+                MessageBox.Show("Цена не может быть отрицательной");
+                return false;
+            }
+
+            if (!int.TryParse(textBoxKolVo.Text, out int quantity))
+            {
+                MessageBox.Show("Количество некорректно");
+                return false;
+            }
+
+            if (quantity < 0)
+            {
+                MessageBox.Show("Количество не может быть отрицательным");
+                return false;
+            }
+
+            return true;
+        }
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            if (!ValidateFields())
+                return;
+
             string id = GenerateArticule();
-            MessageBox.Show(id);
+
+
+
+            bool result = CardTovar.AddTovar(
+                 id,
+                 textBoxName.Text,
+                 comboBoxEdIzm.SelectedValue.ToString(),
+                 comboBoxPostav.SelectedValue.ToString(),
+                 comboBoxProizv.SelectedValue.ToString(),
+                 comboBoxKateg.SelectedValue.ToString(),
+                 textBoxPrice.Text,
+                 textBoxSkidka.Text,
+                 textBoxKolVo.Text,
+                 textBoxDesc.Text,
+                 selectedImage
+                 );
+            if (result)
+            {
+                MessageBox.Show("Товар добавлен");
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Ошибка добавления");
+            } 
+            
+             
+
+            
+
         }
     }
 }

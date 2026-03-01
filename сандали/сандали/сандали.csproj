@@ -107,11 +107,29 @@
     <Compile Include="FormAddTovar.Designer.cs">
       <DependentUpon>FormAddTovar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddZakaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddZakaz.Designer.cs">
+      <DependentUpon>FormAddZakaz.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormListTovar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormListTovar.Designer.cs">
       <DependentUpon>FormListTovar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListTovarInZakaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListTovarInZakaz.Designer.cs">
+      <DependentUpon>FormListTovarInZakaz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormListZakaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListZakaz.Designer.cs">
+      <DependentUpon>FormListZakaz.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUppTovar.cs">
       <SubType>Form</SubType>
@@ -121,6 +139,7 @@
     </Compile>
     <Compile Include="MyClass\Autorization.cs" />
     <Compile Include="MyClass\CardTovar.cs" />
+    <Compile Include="MyClass\CardZakazcs.cs" />
     <Compile Include="MyClass\ClassComboBox.cs" />
     <Compile Include="MyClass\ConnectionBD.cs" />
     <Compile Include="Program.cs" />
@@ -143,8 +162,20 @@
     <EmbeddedResource Include="FormAddTovar.resx">
       <DependentUpon>FormAddTovar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddZakaz.resx">
+      <DependentUpon>FormAddZakaz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormListTovar.resx">
       <DependentUpon>FormListTovar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListTovarInZakaz.resx">
+      <DependentUpon>FormListTovarInZakaz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListZakaz.resx">
+      <DependentUpon>FormListZakaz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUppTovar.resx">
+      <DependentUpon>FormUppTovar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

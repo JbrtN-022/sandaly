@@ -23,6 +23,7 @@ namespace сандали.MyClass
         public static DataTable dtPostavchik = new DataTable();
         public static DataTable dtProizvoditel = new DataTable();
         public static DataTable dtEdinIzm = new DataTable(); 
+        public static DataTable dtTovariInZakaz = new DataTable();
         public static bool ConnectBD()
         {
             try

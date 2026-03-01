@@ -41,5 +41,47 @@ namespace сандали.MyClass
             }
         }
 
+        public static bool AddTovar(string art,string name, string unitId, string SupplierId, string manufacId, string categoryId, string price, string discount, string quantity,string description, string photo)
+        {
+            try
+            {
+                ConnectionBD.myCommand.CommandText = $@"INSERT INTO up_02_2_2.товар (article,name,unit_id,supplier_id,manufacturer_id,category_id,price,discount_percent,stock_quantity,description,photo) 
+                                    Values ('{art}','{name}','{unitId}','{SupplierId}','{manufacId}','{categoryId}','{price}','{discount}','{quantity}','{description}','{photo}');";
+                if (ConnectionBD.myCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+        public static bool UppTovar(string art, string name, string unitId, string SupplierId, string manufacId, string categoryId, string price, string discount, string quantity, string description, string photo)
+        {
+            try
+            {
+                ConnectionBD.myCommand.CommandText = $@"UPDATE up_02_2_2.товар 
+                 SET name='{name}',unit_id='{unitId}',supplier_id='{SupplierId}',manufacturer_id='{manufacId}',category_id='{categoryId}',price='{price}',discount_percent='{discount}',
+                 stock_quantity='{quantity}',description='{description}',photo='{photo}' WHERE article = '{art}'";
+                if (ConnectionBD.myCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
     }
 }

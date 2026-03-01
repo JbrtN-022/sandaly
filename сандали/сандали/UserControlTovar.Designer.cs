@@ -82,6 +82,7 @@
             this.labelDesc.Size = new System.Drawing.Size(297, 35);
             this.labelDesc.TabIndex = 3;
             this.labelDesc.Text = "Описание товара:";
+            this.labelDesc.Click += new System.EventHandler(this.labelDesc_Click);
             // 
             // labelProizvoditel
             // 

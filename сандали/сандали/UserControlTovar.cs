@@ -18,13 +18,9 @@ namespace сандали
     {
         public string article, kat, name, desc, proizv, postav, price, edIzm, kolvo, photo, skidka;
 
-        private void UserControlTovar_Click(object sender, EventArgs e)
+        private void labelDesc_Click(object sender, EventArgs e)
         {
-            if (int.Parse(ConnectionBD.roll) == 1)
-            {
-                FormUppTovar form = new FormUppTovar();
-                form.ShowDialog();
-            }
+
         }
 
         public UserControlTovar(string art, string kateg, string names, string descript, string proizvod, string postavshik, string prices, string edIzmer, string kolichestvo, string foto, string skidkaProc)
@@ -38,7 +34,6 @@ namespace сандали
             postav = postavshik;
             price = prices;
             edIzm = edIzmer;
-            photo = foto;
             kolvo = kolichestvo;
             photo = foto;
             skidka = skidkaProc;
@@ -82,6 +77,20 @@ namespace сандали
             labelKolVo.Text = $"Количество на складе: {kolvo}";
             labelSkidka.Text = $"Действующая скидка: {skidka} %" ;
             LoadImage();
+        }
+        private void UserControlTovar_Click(object sender, EventArgs e)
+        {
+            if (int.Parse(ConnectionBD.roll) == 1)
+            {
+                FormUppTovar form = new FormUppTovar(article, kat, name, desc, proizv, postav, price, edIzm, kolvo, photo, skidka);
+                form.ShowDialog();
+                FormListTovar parent = this.FindForm() as FormListTovar;
+
+                if (parent != null)
+                {
+                    parent.LoadTovars();
+                }
+            }
         }
         public void LoadImage() 
         {

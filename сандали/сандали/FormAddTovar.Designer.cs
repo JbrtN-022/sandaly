@@ -56,7 +56,7 @@
             this.buttonAdd.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonAdd.Location = new System.Drawing.Point(434, 305);
-            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(248, 47);
             this.buttonAdd.TabIndex = 0;
@@ -68,9 +68,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Chartreuse;
             this.pictureBox1.Location = new System.Drawing.Point(434, 37);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(250, 250);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -78,7 +79,7 @@
             // textBoxName
             // 
             this.textBoxName.Location = new System.Drawing.Point(185, 37);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(218, 25);
             this.textBoxName.TabIndex = 2;
@@ -87,7 +88,7 @@
             // 
             this.comboBoxKateg.FormattingEnabled = true;
             this.comboBoxKateg.Location = new System.Drawing.Point(185, 74);
-            this.comboBoxKateg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxKateg.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxKateg.Name = "comboBoxKateg";
             this.comboBoxKateg.Size = new System.Drawing.Size(218, 25);
             this.comboBoxKateg.TabIndex = 3;
@@ -95,7 +96,7 @@
             // textBoxDesc
             // 
             this.textBoxDesc.Location = new System.Drawing.Point(185, 107);
-            this.textBoxDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDesc.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDesc.Multiline = true;
             this.textBoxDesc.Name = "textBoxDesc";
             this.textBoxDesc.Size = new System.Drawing.Size(218, 47);
@@ -105,7 +106,7 @@
             // 
             this.comboBoxProizv.FormattingEnabled = true;
             this.comboBoxProizv.Location = new System.Drawing.Point(185, 162);
-            this.comboBoxProizv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxProizv.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxProizv.Name = "comboBoxProizv";
             this.comboBoxProizv.Size = new System.Drawing.Size(218, 25);
             this.comboBoxProizv.TabIndex = 5;
@@ -114,7 +115,7 @@
             // 
             this.comboBoxPostav.FormattingEnabled = true;
             this.comboBoxPostav.Location = new System.Drawing.Point(185, 195);
-            this.comboBoxPostav.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxPostav.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxPostav.Name = "comboBoxPostav";
             this.comboBoxPostav.Size = new System.Drawing.Size(218, 25);
             this.comboBoxPostav.TabIndex = 6;
@@ -259,7 +260,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonAdd);
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAddTovar";
             this.Text = "FormAddTovar";
             this.Load += new System.EventHandler(this.FormAddTovar_Load);
