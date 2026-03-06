@@ -19,7 +19,7 @@ namespace сандали
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if( MyClass.ConnectionBD.ConnectBD() != true)
+            if( MyClass.ConnectionBD.ConnectBd() != true)
             {
                 this.Close();
             }

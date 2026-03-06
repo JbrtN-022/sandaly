@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,38 +11,73 @@ namespace сандали.MyClass
 {
     internal class CardTovar
     {
-
-        public static void SelectListTovar(FlowLayoutPanel panel)
+        public static void SelectListTovar(FlowLayoutPanel panel, int postav = 0, bool sort = true, string search = "")
         {
             panel.Controls.Clear();
+            string sql = @"
+            SELECT article,
+	            категориятовара.name as 'категория товара',
+	            товар.name,
+	            description,
+	            производитель.name as 'производитель',
+	            поставщики.name as 'поставщики',
+	            price,
+	            единицы_изм.name as 'единицы измерения',
+	            stock_quantity,
+	            photo,
+	            discount_percent
+            FROM up_02_2_2.товар
+            JOIN  up_02_2_2.категориятовара ON товар.category_id = категориятовара.id
+            JOIN up_02_2_2.производитель ON товар.manufacturer_id = производитель.id
+            JOIN up_02_2_2.поставщики ON товар.supplier_id = поставщики.id 
+            JOIN up_02_2_2.единицы_изм ON товар.unit_id = единицы_изм.id WHERE 1=1";
 
-            ConnectionBD.myCommand.CommandText = @"SELECT article, категориятовара.name as 'категория товара', товар.name,
-            description, производитель.name as 'производитель', поставщики.name as 'поставщики', price, единицы_изм.name as 'единицы измерения', stock_quantity,photo,discount_percent
-            FROM up_02_2_2.товар ,  up_02_2_2.категориятовара, up_02_2_2.производитель, up_02_2_2.поставщики, up_02_2_2.единицы_изм
-            where товар.category_id = категориятовара.id and товар.manufacturer_id = производитель.id and товар.supplier_id = поставщики.id and товар.unit_id = единицы_изм.id;";
-             using (MySqlDataReader reader = ConnectionBD.myCommand.ExecuteReader())
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                sql += $@" and (товар.name LIKE '%{search}%' or 
+                        description LIKE '%{search}%' or 
+                        производитель.name LIKE '%{search}%' or
+                        поставщики.name LIKE '%{search}%' or
+                        единицы_изм.name LIKE '%{search}%' or
+                        категориятовара.name LIKE '%{search}%')";
+            }
+            if (postav != 0)
+            {
+                sql += $@"and товар.supplier_id = '{postav}'";
+            }
+            if (sort)
+            {
+                sql += $@" order by stock_quantity asc";
+            }
+            else
+            {
+                sql += $@" ORDER BY stock_quantity desc";
+            }
+            ConnectionBD.myCommand.CommandText = sql;
+            using (MySqlDataReader reader = ConnectionBD.myCommand.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     string article = reader["article"].ToString();
-                    string kat = reader["категория товара"].ToString();
+                    string Kateg = reader["категория товара"].ToString();
                     string name = reader["name"].ToString();
-                    string desc = reader["description"].ToString();
-                    string proizv = reader["производитель"].ToString();
-                    string postav = reader["поставщики"].ToString();
+                    string description = reader["description"].ToString();
+                    string Proizvod = reader["производитель"].ToString();
+                    string postavchik = reader["поставщики"].ToString();
                     string price = reader["price"].ToString();
-                    string edIzm = reader["единицы измерения"].ToString();
-                    string kolvo = reader["stock_quantity"].ToString();
+                    string Edizm = reader["единицы измерения"].ToString();
+                    string stock = reader["stock_quantity"].ToString();
                     string photo = reader["photo"].ToString();
-                    string skidka = reader["discount_percent"].ToString();
-
-                    UserControlTovar controlTovar = new UserControlTovar(article, kat, name, desc, proizv, postav, price,edIzm, kolvo, photo,skidka);
-                    panel.Controls.Add(controlTovar);
+                    string discount = reader["discount_percent"].ToString();
+                    UserControlTovar user = new UserControlTovar(article, Kateg, name, description, Proizvod, postavchik, price, Edizm, stock, photo, discount);
+                    panel.Controls.Add(user);
                 }
             }
         }
 
-        public static bool AddTovar(string art,string name, string unitId, string SupplierId, string manufacId, string categoryId, string price, string discount, string quantity,string description, string photo)
+
+        public static bool AddTovar(string art, string name, string unitId, string SupplierId, string manufacId, string categoryId, string price, string discount, string quantity, string description, string photo)
         {
             try
             {
@@ -55,7 +91,8 @@ namespace сандали.MyClass
                 {
                     return false;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -83,5 +120,43 @@ namespace сандали.MyClass
                 return false;
             }
         }
+
+        public static int SearchTovarForDelete(string art)
+        {
+            try
+            {
+                ConnectionBD.myCommand.CommandText = $@"SELECT count(*) FROM up_02_2_2.состав_заказа where article = '{art}';";
+                object res = ConnectionBD.myCommand.ExecuteScalar();
+                return int.Parse(res.ToString());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return 0;
+            }
+        }
+
+        public static bool DeleteTovar(string art)
+        {
+            try
+            {
+                ConnectionBD.myCommand.CommandText = $@"DELETE from up_02_2_2.товар where article = '{art}';";
+                if (ConnectionBD.myCommand.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+
+        }
     }
 }
+

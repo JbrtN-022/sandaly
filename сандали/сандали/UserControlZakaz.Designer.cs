@@ -90,6 +90,7 @@
             this.label2.Size = new System.Drawing.Size(248, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Номер заказа | Стоимость заказа:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -129,6 +130,7 @@
             this.Name = "UserControlZakaz";
             this.Size = new System.Drawing.Size(484, 112);
             this.Load += new System.EventHandler(this.UserControlZakaz_Load);
+            this.Click += new System.EventHandler(this.UserControlZakaz_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

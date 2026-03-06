@@ -30,7 +30,6 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonAdd = new System.Windows.Forms.Button();
-            this.buttonDel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -38,7 +37,7 @@
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.Chartreuse;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(14, 14);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(684, 441);
             this.flowLayoutPanel1.TabIndex = 1;
@@ -55,27 +54,15 @@
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.button1_Click);
             // 
-            // buttonDel
-            // 
-            this.buttonDel.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.buttonDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonDel.Location = new System.Drawing.Point(219, 479);
-            this.buttonDel.Name = "buttonDel";
-            this.buttonDel.Size = new System.Drawing.Size(183, 39);
-            this.buttonDel.TabIndex = 4;
-            this.buttonDel.Text = "Удалить Заказ";
-            this.buttonDel.UseVisualStyleBackColor = false;
-            // 
             // FormListZakaz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 544);
-            this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormListZakaz";
             this.Text = "FormListZakaz";
             this.Load += new System.EventHandler(this.FormListZakaz_Load);
@@ -87,6 +74,5 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.Button buttonDel;
     }
 }

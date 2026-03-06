@@ -31,14 +31,15 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblFIO = new System.Windows.Forms.Label();
             this.comboBoxFilter = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.comboBoxSort = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonZak = new System.Windows.Forms.Button();
+            this.buttonDel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,14 +75,16 @@
             this.comboBoxFilter.Name = "comboBoxFilter";
             this.comboBoxFilter.Size = new System.Drawing.Size(199, 25);
             this.comboBoxFilter.TabIndex = 4;
+            this.comboBoxFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxFilter_SelectedIndexChanged);
             // 
-            // textBox1
+            // textBoxSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(136, 23);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(199, 25);
-            this.textBox1.TabIndex = 2;
+            this.textBoxSearch.Location = new System.Drawing.Point(136, 23);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(199, 25);
+            this.textBoxSearch.TabIndex = 2;
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
             // 
             // comboBoxSort
             // 
@@ -90,6 +93,7 @@
             this.comboBoxSort.Name = "comboBoxSort";
             this.comboBoxSort.Size = new System.Drawing.Size(199, 25);
             this.comboBoxSort.TabIndex = 6;
+            this.comboBoxSort.SelectedIndexChanged += new System.EventHandler(this.comboBoxSort_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -122,7 +126,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.comboBoxFilter);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.textBoxSearch);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(16, 444);
             this.groupBox1.Name = "groupBox1";
@@ -131,38 +135,51 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Работа с  карточками";
             // 
-            // button1
+            // buttonAdd
             // 
-            this.button1.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(394, 456);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(211, 36);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "добавить товар";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAdd.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonAdd.Location = new System.Drawing.Point(394, 456);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(211, 36);
+            this.buttonAdd.TabIndex = 11;
+            this.buttonAdd.Text = "добавить товар";
+            this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.Visible = false;
+            this.buttonAdd.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // buttonZak
             // 
-            this.button2.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(394, 547);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(211, 36);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Список заказов";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonZak.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.buttonZak.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonZak.Location = new System.Drawing.Point(394, 547);
+            this.buttonZak.Name = "buttonZak";
+            this.buttonZak.Size = new System.Drawing.Size(211, 36);
+            this.buttonZak.TabIndex = 12;
+            this.buttonZak.Text = "Список заказов";
+            this.buttonZak.UseVisualStyleBackColor = false;
+            this.buttonZak.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // buttonDel
+            // 
+            this.buttonDel.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.buttonDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDel.Location = new System.Drawing.Point(394, 500);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(211, 36);
+            this.buttonDel.TabIndex = 13;
+            this.buttonDel.Text = "Удалить  товар";
+            this.buttonDel.UseVisualStyleBackColor = false;
+            this.buttonDel.Visible = false;
             // 
             // FormListTovar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 597);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonDel);
+            this.Controls.Add(this.buttonZak);
+            this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblFIO);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -183,13 +200,14 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label lblFIO;
         private System.Windows.Forms.ComboBox comboBoxFilter;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.ComboBox comboBoxSort;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonZak;
+        private System.Windows.Forms.Button buttonDel;
     }
 }

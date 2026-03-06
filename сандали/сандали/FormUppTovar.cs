@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,28 @@ namespace сандали
         public string newphotoPath;
         private string imageFolder = "Images";
         public string article, kat, name, desc, proizv, postav, price, edIzm, kolvo, skidka;
+
+        private void comboBoxPostav_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonDel_Click(object sender, EventArgs e)
+        {
+            int res = CardTovar.SearchTovarForDelete(article);
+            if (res == 0)
+            {
+                CardTovar.DeleteTovar(article);
+                MessageBox.Show("товар удален");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("товар невозможно удалить тк он находиться в чьем то заказе");
+            }
+
+        }
+
         public FormUppTovar(string art, string kateg, string nameT, string description, string proizvodstvo, string postavchik, string priceT, string edIzmer, string kolvoT, string photoT, string skidkaT)
         {
             InitializeComponent();
@@ -57,7 +80,18 @@ namespace сандали
 
         private void FormUppTovar_Load(object sender, EventArgs e)
         {
-             textBoxArt.Text = article;
+            DataTable dtLocalPost = new DataTable();
+            using (var cmd = new MySqlCommand("SELECT id, name FROM up_02_2_2.поставщики", ConnectionBD.myConnection))
+            using (var adap = new MySqlDataAdapter(cmd))
+            {
+                adap.Fill(dtLocalPost);
+            }
+
+            comboBoxPostav.DataSource = dtLocalPost;
+            comboBoxPostav.DisplayMember = "name";
+            comboBoxPostav.ValueMember = "id";
+
+            textBoxArt.Text = article;
              textBoxName.Text = name;  
              textBoxPrice.Text = price;
              textBoxSkidka.Text = skidka;

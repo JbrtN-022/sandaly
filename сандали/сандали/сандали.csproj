@@ -137,9 +137,16 @@
     <Compile Include="FormUppTovar.Designer.cs">
       <DependentUpon>FormUppTovar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUppZakaz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUppZakaz.Designer.cs">
+      <DependentUpon>FormUppZakaz.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyClass\Autorization.cs" />
     <Compile Include="MyClass\CardTovar.cs" />
-    <Compile Include="MyClass\CardZakazcs.cs" />
+    <Compile Include="MyClass\CardTovarInZakaz.cs" />
+    <Compile Include="MyClass\CardZakaz.cs" />
     <Compile Include="MyClass\ClassComboBox.cs" />
     <Compile Include="MyClass\ConnectionBD.cs" />
     <Compile Include="Program.cs" />
@@ -176,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUppTovar.resx">
       <DependentUpon>FormUppTovar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUppZakaz.resx">
+      <DependentUpon>FormUppZakaz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

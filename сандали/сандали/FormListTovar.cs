@@ -20,17 +20,26 @@ namespace сандали
 
         private void FormListTovar_Load(object sender, EventArgs e)
         {
+            ClassComboBox.Postavchik();
             CardTovar.SelectListTovar(flowLayoutPanel1);
+            comboBoxSort.Items.Add("По возрастанию");
+            comboBoxSort.Items.Add("По убыванию");
+            comboBoxSort.SelectedIndex = 0;
+
+            comboBoxFilter.Items.Add("Все поставщики");
+            comboBoxFilter.DataSource = ConnectionBD.dtPostavchik;
+            comboBoxFilter.ValueMember = "id"; 
+            comboBoxFilter.DisplayMember = "name";
 
             lblFIO.Text = ConnectionBD.resFio; 
             if(int.Parse(ConnectionBD.roll) == 3)
             {
                 groupBox1.Visible = false;
-                button2.Visible = false;
+                buttonZak.Visible = false;
             }
             if (int.Parse(ConnectionBD.roll) == 1)
             {
-                button1.Visible = true;
+                buttonAdd.Visible = true;
             }
         }
 
@@ -55,5 +64,36 @@ namespace сандали
             FormListZakaz form = new FormListZakaz();
             form.ShowDialog();
         }
+        private void LoadData()
+        {
+            string serachtext = textBoxSearch.Text;
+            bool sort;
+            if (comboBoxSort.SelectedItem.ToString() == "По возрастанию")
+            {
+                sort = true;
+            }
+            else
+            {
+               sort = false;
+            }
+            int post = 0;
+            CardTovar.SelectListTovar(flowLayoutPanel1, post, sort,serachtext);
+        }
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void comboBoxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void comboBoxSort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+       
     }
 }

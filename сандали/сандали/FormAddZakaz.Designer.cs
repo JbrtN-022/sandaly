@@ -44,7 +44,7 @@
             // textBoxNumZak
             // 
             this.textBoxNumZak.Location = new System.Drawing.Point(106, 16);
-            this.textBoxNumZak.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxNumZak.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNumZak.Name = "textBoxNumZak";
             this.textBoxNumZak.Size = new System.Drawing.Size(188, 25);
             this.textBoxNumZak.TabIndex = 0;
@@ -53,7 +53,7 @@
             // 
             this.comboBoxStatus.FormattingEnabled = true;
             this.comboBoxStatus.Location = new System.Drawing.Point(106, 58);
-            this.comboBoxStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxStatus.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(188, 25);
             this.comboBoxStatus.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             this.comboBoxAdres.FormattingEnabled = true;
             this.comboBoxAdres.Location = new System.Drawing.Point(106, 100);
-            this.comboBoxAdres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxAdres.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxAdres.Name = "comboBoxAdres";
             this.comboBoxAdres.Size = new System.Drawing.Size(188, 25);
             this.comboBoxAdres.TabIndex = 2;
@@ -70,7 +70,7 @@
             // dateTimePickerZakaza
             // 
             this.dateTimePickerZakaza.Location = new System.Drawing.Point(106, 143);
-            this.dateTimePickerZakaza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerZakaza.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerZakaza.Name = "dateTimePickerZakaza";
             this.dateTimePickerZakaza.Size = new System.Drawing.Size(188, 25);
             this.dateTimePickerZakaza.TabIndex = 3;
@@ -78,7 +78,7 @@
             // dateTimePickerVidachi
             // 
             this.dateTimePickerVidachi.Location = new System.Drawing.Point(106, 187);
-            this.dateTimePickerVidachi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerVidachi.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerVidachi.Name = "dateTimePickerVidachi";
             this.dateTimePickerVidachi.Size = new System.Drawing.Size(188, 25);
             this.dateTimePickerVidachi.TabIndex = 4;
@@ -91,8 +91,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(282, 39);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Добавить товар к заказу";
+            this.button1.Text = "Добавить  заказ";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -156,9 +157,10 @@
             this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.textBoxNumZak);
             this.Font = new System.Drawing.Font("Times New Roman", 11.25F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAddZakaz";
             this.Text = "FormAddZakaz";
+            this.Load += new System.EventHandler(this.FormAddZakaz_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -51,6 +51,7 @@
             this.buttonUpp = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxArt = new System.Windows.Forms.TextBox();
+            this.buttonDel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,6 +177,7 @@
             this.comboBoxPostav.Name = "comboBoxPostav";
             this.comboBoxPostav.Size = new System.Drawing.Size(218, 25);
             this.comboBoxPostav.TabIndex = 26;
+            this.comboBoxPostav.SelectedIndexChanged += new System.EventHandler(this.comboBoxPostav_SelectedIndexChanged);
             // 
             // comboBoxProizv
             // 
@@ -229,10 +231,10 @@
             // 
             this.buttonUpp.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.buttonUpp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonUpp.Location = new System.Drawing.Point(429, 316);
+            this.buttonUpp.Location = new System.Drawing.Point(429, 289);
             this.buttonUpp.Margin = new System.Windows.Forms.Padding(4);
             this.buttonUpp.Name = "buttonUpp";
-            this.buttonUpp.Size = new System.Drawing.Size(248, 47);
+            this.buttonUpp.Size = new System.Drawing.Size(248, 33);
             this.buttonUpp.TabIndex = 20;
             this.buttonUpp.Text = "изменить запись";
             this.buttonUpp.UseVisualStyleBackColor = false;
@@ -256,11 +258,25 @@
             this.textBoxArt.Size = new System.Drawing.Size(218, 25);
             this.textBoxArt.TabIndex = 40;
             // 
+            // buttonDel
+            // 
+            this.buttonDel.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.buttonDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonDel.Location = new System.Drawing.Point(429, 330);
+            this.buttonDel.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonDel.Name = "buttonDel";
+            this.buttonDel.Size = new System.Drawing.Size(248, 33);
+            this.buttonDel.TabIndex = 42;
+            this.buttonDel.Text = "Удалить запись";
+            this.buttonDel.UseVisualStyleBackColor = false;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
+            // 
             // FormUppTovar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 390);
+            this.Controls.Add(this.buttonDel);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxArt);
             this.Controls.Add(this.label9);
@@ -318,5 +334,6 @@
         private System.Windows.Forms.Button buttonUpp;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxArt;
+        private System.Windows.Forms.Button buttonDel;
     }
 }

@@ -18,6 +18,8 @@ namespace сандали
     {
         public string article, kat, name, desc, proizv, postav, price, edIzm, kolvo, photo, skidka;
 
+       
+
         private void labelDesc_Click(object sender, EventArgs e)
         {
 
@@ -78,8 +80,10 @@ namespace сандали
             labelSkidka.Text = $"Действующая скидка: {skidka} %" ;
             LoadImage();
         }
+
         private void UserControlTovar_Click(object sender, EventArgs e)
         {
+
             if (int.Parse(ConnectionBD.roll) == 1)
             {
                 FormUppTovar form = new FormUppTovar(article, kat, name, desc, proizv, postav, price, edIzm, kolvo, photo, skidka);
@@ -91,18 +95,20 @@ namespace сандали
                     parent.LoadTovars();
                 }
             }
+           
         }
-        public void LoadImage() 
+        public void LoadImage()
         {
-            if (File.Exists(photo)){
+            if (File.Exists(photo))
+            {
                 pictureBox1.Image = Image.FromFile(photo);
+
             }
             else
             {
                 pictureBox1.Image = pictureBox1.ErrorImage;
             }
         }
-
         private void label6_Click(object sender, EventArgs e)
         {
 

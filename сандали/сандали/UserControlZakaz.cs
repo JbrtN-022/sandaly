@@ -15,11 +15,29 @@ namespace сандали
     {
         public string IdZak, NumZak, StatusZak, DataZakaza, AdresPunkt, DataDostavk, Stoimost;
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserControlZakaz_Click(object sender, EventArgs e)
+        {
+            FormUppZakaz formUpp = new FormUppZakaz(IdZak);
+            formUpp.ShowDialog();
+            FormListZakaz parent = this.FindForm() as FormListZakaz;
+
+            if (parent != null)
+            {
+                parent.LoadTovars();
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             FormListTovarInZakaz form = new FormListTovarInZakaz(IdZak);
             form.ShowDialog();
-            FormListTovar parent = this.FindForm() as FormListTovar;
+
+            FormListZakaz parent = this.FindForm() as FormListZakaz;
 
             if (parent != null)
             {
@@ -47,6 +65,10 @@ namespace сандали
 
         private void UserControlZakaz_Load(object sender, EventArgs e)
         {
+            if (Stoimost == null)
+            {
+                label2.Text = $@"Номер заказа {NumZak} | Стоимость заказа: 0";
+            }
             label1.Text = $@"Дата доставки {DataDostavk} ";
             label2.Text = $@"Номер заказа {NumZak} | Стоимость заказа: {Stoimost}";
             label3.Text = $@"Статус заказа: {StatusZak}";

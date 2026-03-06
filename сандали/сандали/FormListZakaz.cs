@@ -17,27 +17,37 @@ namespace сандали
         {
             InitializeComponent();
         }
-
-        private void FormListZakaz_Load(object sender, EventArgs e)
-        {
-            CardZakazcs.SelectCardZakaz(flowLayoutPanel1);
-            if(int.Parse(ConnectionBD.roll) != 1)
-            {
-                buttonAdd.Visible = false;
-                buttonDel.Visible = false;
-            }
-        }
-
         public void LoadTovars()
         {
             flowLayoutPanel1.Controls.Clear();
-            CardTovar.SelectListTovar(flowLayoutPanel1);
+            CardZakaz.SelectCardZakaz(flowLayoutPanel1);
         }
+        private void FormListZakaz_Load(object sender, EventArgs e)
+        {
+            CardZakaz.SelectCardZakaz(flowLayoutPanel1);
+            if(int.Parse(ConnectionBD.roll) != 1)
+            {
+                buttonAdd.Visible = false;
+                
+            }
+        }
+
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
             FormAddZakaz form = new FormAddZakaz();
             form.ShowDialog();
+            FormListZakaz parent = this.FindForm() as FormListZakaz;
+
+            if (parent != null)
+            {
+                parent.LoadTovars();
+            }
+        }
+
+        private void buttonDel_Click(object sender, EventArgs e)
+        {
 
         }
     }

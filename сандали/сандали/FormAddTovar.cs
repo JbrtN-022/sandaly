@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +19,23 @@ namespace сандали
         public FormAddTovar()
         {
             InitializeComponent();
+            // 1. Явно очищаем и загружаем заново
+            ConnectionBD.dtPostavchik.Clear();
             ClassComboBox.Postavchik();
+
+            // 2. Проверяем, что пришло
+            string cols = string.Join(", ", ConnectionBD.dtPostavchik.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
+            string count = ConnectionBD.dtPostavchik.Rows.Count.ToString();
+
+            MessageBox.Show(
+                $"После загрузки поставщиков:\n" +
+                $"Столбцы: {cols}\n" +
+                $"Строк: {count}\n" +
+                $"Первая строка (если есть): {(ConnectionBD.dtPostavchik.Rows.Count > 0 ? string.Join(" | ", ConnectionBD.dtPostavchik.Rows[0].ItemArray) : "нет данных")}"
+            );
+            ClassComboBox.Postavchik();
+            string columns = string.Join(", ", ConnectionBD.dtPostavchik.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
+            MessageBox.Show("Колонки dtPostavchik: " + columns);
             ClassComboBox.EdinicaIzmereniya();
             ClassComboBox.Proizvoditel();
             ClassComboBox.KategoriyaTovara();
@@ -26,11 +44,15 @@ namespace сандали
             comboBoxEdIzm.DisplayMember = "Name";
             comboBoxEdIzm.ValueMember = "id";
             comboBoxKateg.DataSource = ConnectionBD.dtKategoriya;
-            comboBoxKateg.DisplayMember = "Name";
+            comboBoxKateg.DisplayMember = "name";
             comboBoxKateg.ValueMember = "id";
             comboBoxPostav.DataSource = ConnectionBD.dtPostavchik;
-            comboBoxPostav.DisplayMember = "Name";
             comboBoxPostav.ValueMember = "id";
+            comboBoxPostav.DisplayMember = "name";
+
+            //comboBoxPostav.DataSource = ConnectionBD.dtPostavchik;
+            //comboBoxPostav.DisplayMember = "Name";
+            //comboBoxPostav.ValueMember = "id";
             comboBoxProizv.DataSource = ConnectionBD.dtProizvoditel;
             comboBoxProizv.DisplayMember = "Name";
             comboBoxProizv.ValueMember = "id";
@@ -38,29 +60,39 @@ namespace сандали
 
         private void FormAddTovar_Load(object sender, EventArgs e)
         {
+            DataTable dtLocalPost = new DataTable();
+            using (var cmd = new MySqlCommand("SELECT id, name FROM up_02_2_2.поставщики", ConnectionBD.myConnection))
+            using (var adap = new MySqlDataAdapter(cmd))
+            {
+                adap.Fill(dtLocalPost);
+            }
 
+            comboBoxPostav.DataSource = dtLocalPost;
+            comboBoxPostav.DisplayMember = "name";
+            comboBoxPostav.ValueMember = "id";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+          using (OpenFileDialog ofd = new OpenFileDialog())
             {
-                if( ofd.ShowDialog() == DialogResult.OK)
+                if( ofd.ShowDialog() == DialogResult.OK )
                 {
                     selectedImage = ofd.FileName;
-                    pictureBox1.Image =Image.FromFile(selectedImage);
+                    pictureBox1.Image = Image.FromFile( selectedImage );
                 }
             }
+            
+
         }
-        private static Random randomize = new Random();
+        public static Random random = new Random();
         public static string GenerateArticule()
         {
-            char later1 = (char)('A' + randomize.Next(0, 26));
-            int later2 = randomize.Next(100, 1000);
-            char later3 = (char)('A' + randomize.Next(0, 26));
-            int later4 = randomize.Next(0, 10);
-            return $"{later1}{later2}{later3}{later4}";
-
+            char bukva1 = (char)('A' + random.Next(0, 26));
+            int chislo1 = random.Next(100, 1000);
+            char bukva2 = (char)('A' + random.Next(0, 26));
+            int chislo2 = random.Next(0, 10);
+            return $"{bukva1}{chislo1}{bukva2}{chislo2}";
         }
         private bool ValidateFields()
         {
