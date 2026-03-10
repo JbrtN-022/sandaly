@@ -44,8 +44,9 @@ namespace сандали.MyClass
             }
             if (postav != 0)
             {
-                sql += $@"and товар.supplier_id = '{postav}'";
+                sql += $@" AND товар.supplier_id = {postav} ";
             }
+
             if (sort)
             {
                 sql += $@" order by stock_quantity asc";

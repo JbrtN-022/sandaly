@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using сандали.MyClass;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace сандали
@@ -22,13 +23,16 @@ namespace сандали
 
         private void UserControlZakaz_Click(object sender, EventArgs e)
         {
-            FormUppZakaz formUpp = new FormUppZakaz(IdZak);
-            formUpp.ShowDialog();
-            FormListZakaz parent = this.FindForm() as FormListZakaz;
-
-            if (parent != null)
+            if (int.Parse(ConnectionBD.roll) == 1)
             {
-                parent.LoadTovars();
+                FormUppZakaz formUpp = new FormUppZakaz(IdZak);
+                formUpp.ShowDialog();
+                FormListZakaz parent = this.FindForm() as FormListZakaz;
+
+                if (parent != null)
+                {
+                    parent.LoadTovars();
+                }
             }
         }
 
@@ -56,6 +60,11 @@ namespace сандали
             DataZakaza = DateZak;
             DataDostavk = DelivZak;
             Stoimost = stoimostZak;
+
+            if (int.Parse(ConnectionBD.roll) != 1)
+            {
+                button1.Visible = false;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -207,7 +207,10 @@ namespace сандали
             if (!ValidateFields())
                 return;
 
-            
+            if (string.IsNullOrEmpty(newphotoPath))
+            {
+                newphotoPath = photoPath;
+            }
 
             bool result = CardTovar.UppTovar(
                 article,

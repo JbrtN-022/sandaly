@@ -19,23 +19,14 @@ namespace сандали
         public FormAddTovar()
         {
             InitializeComponent();
-            // 1. Явно очищаем и загружаем заново
+           
             ConnectionBD.dtPostavchik.Clear();
             ClassComboBox.Postavchik();
 
-            // 2. Проверяем, что пришло
             string cols = string.Join(", ", ConnectionBD.dtPostavchik.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
             string count = ConnectionBD.dtPostavchik.Rows.Count.ToString();
 
-            MessageBox.Show(
-                $"После загрузки поставщиков:\n" +
-                $"Столбцы: {cols}\n" +
-                $"Строк: {count}\n" +
-                $"Первая строка (если есть): {(ConnectionBD.dtPostavchik.Rows.Count > 0 ? string.Join(" | ", ConnectionBD.dtPostavchik.Rows[0].ItemArray) : "нет данных")}"
-            );
-            ClassComboBox.Postavchik();
-            string columns = string.Join(", ", ConnectionBD.dtPostavchik.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
-            MessageBox.Show("Колонки dtPostavchik: " + columns);
+          
             ClassComboBox.EdinicaIzmereniya();
             ClassComboBox.Proizvoditel();
             ClassComboBox.KategoriyaTovara();
@@ -50,9 +41,6 @@ namespace сандали
             comboBoxPostav.ValueMember = "id";
             comboBoxPostav.DisplayMember = "name";
 
-            //comboBoxPostav.DataSource = ConnectionBD.dtPostavchik;
-            //comboBoxPostav.DisplayMember = "Name";
-            //comboBoxPostav.ValueMember = "id";
             comboBoxProizv.DataSource = ConnectionBD.dtProizvoditel;
             comboBoxProizv.DisplayMember = "Name";
             comboBoxProizv.ValueMember = "id";
@@ -78,8 +66,29 @@ namespace сандали
             {
                 if( ofd.ShowDialog() == DialogResult.OK )
                 {
-                    selectedImage = ofd.FileName;
-                    pictureBox1.Image = Image.FromFile( selectedImage );
+                    try
+                    {
+                        selectedImage = ofd.FileName;
+
+                        Image img = Image.FromFile(selectedImage);
+                        pictureBox1.Image = img;
+
+                        MessageBox.Show("Изображение успешно загружено");
+                    }
+                    catch (OutOfMemoryException)
+                    {
+                        MessageBox.Show("Файл не является изображением или он повреждён.",
+                                        "Ошибка",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка загрузки изображения:\n" + ex.Message,
+                                        "Ошибка",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
                 }
             }
             
